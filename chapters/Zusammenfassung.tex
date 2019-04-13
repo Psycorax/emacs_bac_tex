@@ -1,0 +1,55 @@
+\chapter{Zusammenfassung}
+\label{cha:Zusammenfassung}
+\section{Aufgetretene Probleme}
+\label{sec:probleme}
+Anfangs wurden für die Arbeit Pakete evaluiert, welche ganze
+Entwicklungsumgebungen für C und C++ implementieren. Zum Beispiel das
+Paket
+\textit{cmake-ide}\footnote{\url{https://github.com/atilaneves/cmake-ide}}. Diese
+kompletten Entwicklungsumgebungen funktionieren grundsätzlich sehr
+gut. Das Problem an diesen fertigen Entwicklungsumgebungen ist, dass
+sie meist eine große Anzahl an externen Programme benötigen. Ein
+weiteres Problem ist, dass diese Pakete für die unterschiedlichen
+Sprachen auf einer Vielzahl an Paketen basieren. Diese Pakete
+implementieren meist jedoch grundlegend die selbe Funktionalität.
+
+Die Schwierigkeit bestand nun darin, Pakete zu finden, welche für alle
+verwendeten Sprachen verwendet werden können. Diese Pakete sollten
+ausschließlich Software verwenden, welche auf mehreren
+Betriebssystemen verfügbar ist.
+
+\section{Umsetzung}
+\label{sec:umsetzung}
+Das Ziel dieser Arbeit war es, einfache Entwicklungsumgebungen für
+Emacs zu finden. Diese Entwicklungsumgebungen sollten für mehrere
+Programmiersprachen (C, C++, Python, Latex, CMake, Emacs Lisp und
+VHDL) parallel verwendbar sein. Die Entwicklungsumgebungen für die
+unterschiedlichen Sprachen sollten ähnlich bedienbar sein und auf den
+selben Paketen aufsetzten.
+
+Um diese einfachen und ähnlich bedienbaren Entwicklungsumgebungen
+realisieren zu können, wurden eigene Funktionen für die einzelnen Modi
+definiert. Diese Funktionen bauen auf den gewählten Paketen auf und
+erweitern diese. Es wurde folgende Funktionalität implementiert:
+\begin{itemize}
+\item Die Erstellung von Projekverzeichnissen,
+\item Die Ausrichtung und Formatieren von Code,
+\item Das Kompilieren des Projektes,
+\item Das Erzeugen von ausführbaren Dateien,
+\item Das Aufräumen von Projekten, durch entfernen generierter Ordner
+  und Dateien,
+\item Das Starten des Debuggens für Projekte und
+\item Das Starten von Simulationen in externer Software.\\
+\end{itemize}
+Damit diese Funktionen für den Benutzer leicht zugänglich sind, werden
+sie in \textit{hydras} (siehe Abschnitt \ref{subsec:hydra})
+hinterlegt.
+
+\section{Mögliche Erweiterungen}
+\label{sec:erweiterungen}
+Eine mögliche Erweiterung dieser Arbeit ist das Einbinden von Paketen,
+welche spezifisch für die Entwicklung auf eingebetteten Systeme
+ausgelegt sind. Ein mögliches Paket an dem angesetzt werden kann ist
+\textit{stm32-emacs}\footnote{\url{https://github.com/SL-RU/stm32-emacs}}. Dieses
+Paket baut beinahe ausschließlich auf Software auf, welche bereits für
+die Pakete in dieser Arbeit benötigt wurden.

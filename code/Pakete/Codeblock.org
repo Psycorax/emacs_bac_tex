@@ -1,0 +1,17 @@
+#+BEGIN_SRC emacs-lisp
+  (if (not (equal 2 3))
+      (progn
+	(setq var (+ 2 3))
+	(+ var var)))
+#+END_SRC
+
+#+RESULTS:
+: 10
+
+#+BEGIN_SRC python
+  import time
+  return time.ctime()
+#+END_SRC
+
+#+RESULTS:
+: Fri Aug  3 11:37:20 2018

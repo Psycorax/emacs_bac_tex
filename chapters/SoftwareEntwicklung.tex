@@ -1,0 +1,107 @@
+\chapter{Gegenüberstellung}
+\label{cha:sw-entwicklung}
+Dieses Kapitel stellt die Ausgangslage als Hardware- und
+Software-Entwickler/in dar. Es wird beschrieben, in welchen Fällen
+sich ein Umstieg auf Emacs lohnt.
+
+\section{Herkömmliche Entwicklungsumgebungen für unterschiedliche Aufgaben}
+In den folgenden Abschnitten werden übliche Entwicklungsumgebungen für
+Hardware- und Software-Entwickler/innen aufgelistet. Im Anschluss
+werden die möglichen Probleme, die diese Vielzahl an
+Entwicklungsumgebungen mit sich bringen kann, zusammengefasst.\\
+
+\subsection{Entwicklungsumgebungen zur Erstellung von Dokumenten}
+In der Informatik werden einige Programme benötigt, um ein Projekt
+effektiv ausarbeiten zu können. Zunächst wird eine Software für die
+Erstellung technischer Dokumente benötigt. Diese Dokumente reichen von
+Pflichtenheften bis hin zu Softwarebeschreibungen. Dafür eignet sich
+die Sprache LaTeX, ein Editor für LaTeX ist zum Beispiel
+\textit{MikTex}\footnote{\url{https://miktex.org/}}. Eine weitere
+Optionen ist Software aus dem Paket \textit{Microsoft
+  Office}\footnote{\url{https://www.office.com/}}, wie
+\textit{Microsoft
+  Word}\footnote{\url{https://products.office.com/de-at/word}} oder
+\textit{Microsoft
+  Excel}\footnote{\url{https://products.office.com/de-at/excel}} für
+die Erstellung von Tabellen.\\
+
+\subsection{Entwicklungsumgebung zum Entwickeln von Code}
+Als nächstes wird eine Entwicklungsumgebung für die jeweils verwendete
+Programmiersprache ausgewählt. Eine kostenlose Variante ist
+\textit{Eclipse}\footnote{\url{https://www.eclipse.org/}}. Es kann
+aber auch eine Version von \textit{Visual
+  Studio}\footnote{\url{https://visualstudio.microsoft.com/}}
+verwendet werden. Es muss bei der Wahl der Entwicklungsumgebung auf
+folgende Punkte geachtet werden:
+\begin{itemize}
+\item Auf welchem Betriebssystem wird entwickelt.
+\item Für welche Plattform wird entwickelt.
+\item Welche Programmiersprache wird verwendet.
+\item Wenn mehrere Programmiersprachen zum Einsatz kommen, muss eine
+  Entwicklungsumgebung gefunden werden, die all diese Sprachen
+  unterstützt. Andernfalls müssen mehrere Umgebungen verwendet werden.
+\item Unterstützt die Entwicklungsumgebung den erforderlichen
+  Compiler.
+\end{itemize}
+
+\subsection{Sonstige zusätzliche Software}
+Zur Versionsverwaltung wird in einigen Fällen eine grafische
+Oberfläche bevorzugt. Für Versionsverwaltungssysteme wie
+\textit{Git}\footnote{\url{https://git-scm.com/}} und
+\textit{Subversion}\footnote{\url{https://subversion.apache.org/}}
+gibt es zum Beispiel \textit{Tortoise
+  Git}\footnote{\url{https://tortoisegit.org/}} und \textit{Tortoise
+  SVN}\footnote{\url{https://tortoisesvn.net/}}.\\
+
+\subsection{Probleme bei einer großen Anzahl an Software}
+Wird an einem Projekt für einen großen Zeitraum gearbeitet und für
+dieses Projekt wurden eine oder zwei Entwicklungsumgebungen
+ausgewählt. Dann ist nichts dagegen einzuwenden, diese
+Entwicklungsumgebungen zu erlernen und zu verwenden. Jedoch gibt es
+ebenfalls Projekte, die nur von kurzer Dauer sind. Es muss jeder
+persönlich abschätzen, ob es Sinnvoll ist eine neue
+Entwicklungsumgebung für diesen kurzen Zeitraum zu erlernen.
+
+Ebenfalls kann es vorkommen, dass für die Entwicklung einiger
+Abschnitte des Projektes ein Server zur Verfügung gestellt wird, auf
+welchem eine Distribution von
+\textit{Linux}\footnote{\url{https://www.kernel.org/}} läuft. Dies ist
+problematisch, wenn die persönliche Wahl der Entwicklungsumgebung auf
+eine Windows-basierte Entwicklungsumgebung fiel und diese für Linux
+nicht verfügbar ist. So muss wieder eine neue Entwicklungsumgebung für
+die erforderliche Aufgabe gesucht und erlernt werden. Andernfalls muss
+man sich mit einem einfachen Editor zufrieden geben. Weiter Probleme
+können auftreten, wenn Programmierer am selben Projekt auf
+unterschiedlichen Betriebssystemen arbeiten. In einigen Fällen hat man
+selber auch gar keine Wahl, welche Entwicklungsumgebung zu verwenden
+ist. Zum Beispiel wenn man einem Projekt zugewiesen wird, für das eine
+Entwicklungsumgebung bereits gewählt wurde. Hier kann wiederum auf
+einen einfachen Editor ausgewichen werden oder man lernt, mit der
+Entwicklungsumgebung zu arbeiten.\\
+
+\section{Warum Emacs}
+Emacs ist einer der mächtigsten Editoren und eine eigenständige
+Arbeitsumgebung. Damit ist gemeint, dass Emacs auch Dateien
+umbenennen, verschieben, kopieren und löschen kann. Wenn Emacs in
+einer grafischen Umgebung gestartet wird, können grafische Objekte wie
+Bilder angezeigt werden. Wird Emacs in einem Terminal ausgeführt, so
+kann zwar nur Text angezeigt werden, aber Emacs kann so auch auf einem
+Server ohne grafischer Oberfläche verwendet werden. Emacs ist ein
+Emacs, welches jedoch in einem Programmiergerüst einem so genanntem
+{\glqq}Framework{\grqq} läuft. Dieses Programmiergerüst ist höchst
+personalisierbar, wodurch integrierte Entwicklungsumgebungen
+geschaffen werden können, die an die eigenen Bedürfnisse angepasst
+sind. Wird Emacs unter
+\textit{Unix}\footnote{\url{http://www.opengroup.org/unix}} verwendet,
+so können alle \textit{Unix}-Kommandos innerhalb von Emacs ausgeführt
+werden. Das selbe gilt auch für
+\textit{Mac-OS}\footnote{\url{https://www.apple.com/at/macos/high-sierra/}}
+und \textit{Windows}. Es ist dabei zu beachten, dass die
+\textit{Windows}-Kommandozeile bei weitem nicht so mächtig ist, wie
+die \textit{Unix}-Kommandozeile. Die
+\textit{Powershell}\footnote{\url{https://docs.microsoft.com/en-gb/powershell/}}
+ist eine beachtliche Verbesserung zur \textit{Windows}-Kommandozeile,
+kann jedoch ebenfalls nicht mit der \textit{Unix}-Kommandozeile
+mithalten. Dies ist jedoch auf das Betriebssystem und die Tatsache,
+dass die \textit{Unix}-Kommandozeile alle In- und Outputs als Dateien
+interpretiert, zurückzuführen. \cite{CameronRosenblattRaymond1996}\\

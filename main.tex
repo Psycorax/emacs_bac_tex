@@ -1,0 +1,85 @@
+%%% File encoding: UTF-8
+%%% äöüÄÖÜß  <-- keine deutschen Umlaute hier? UTF-faehigen Editor verwenden!
+
+%%% Magic Comments zum Setzen der korrekten Parameter in kompatiblen IDEs
+% !TeX encoding = utf8
+% !TeX program = pdflatex 
+% !TeX spellcheck = de_DE
+% !BIB program = biber
+
+\documentclass[bachelor,german]{hgbthesis}
+% Zulässige Optionen in [..]: 
+%   Typ der Arbeit: diploma, master (default), bachelor, internship 
+%   Hauptsprache: german (default), english
+%%%----------------------------------------------------------
+
+\RequirePackage[utf8]{inputenc}		% bei der Verw. von lualatex oder xelatex entfernen!
+
+\graphicspath{{images/}}    % Verzeichnis mit Bildern und Grafiken
+\logofile{logo}				% Logo-Datei = images/logo.pdf (\logofile{}, wenn kein Logo gewünscht)
+\bibliography{references}  	% Biblatex-Literaturdatei (references.bib)
+%%%----------------------------------------------------------
+% Angaben für die Titelei (Titelseite, Erklärung etc.)
+%%%----------------------------------------------------------
+
+%%% Einträge für ALLE Arbeiten: -----------------------------
+\title{Emacs für die moderne Hardware- und Software-Entwicklung}
+\author{Thomas \ Reisinger} \programname{Hardware-Sotware Design}
+\placeofstudy{Hagenberg im Mühlkreis} \dateofsubmission{2018}{09}{10}
+% {YYYY}{MM}{DD}
+
+%%% Zusätzlich für eine Bachelorarbeit: ---------------------
+\thesisnumber{1510306033-A}   % Stud-ID, z.B. 1310238045-A  
+% (A = 1. Bachelorarbeit)
+\semester{Sommersemester 2018} 
+\coursetitle{Bachelorseminar} 
+\advisor{FH-Prof. DI. Markus Pfaff}
+
+%%% Restriktive Lizenformel anstatt CC (nur für Typ master) -
+%\strictlicense
+
+%%%----------------------------------------------------------
+\begin{document}
+%%%----------------------------------------------------------
+
+%%%----------------------------------------------------------
+\frontmatter                    % Titelei (röm. Seitenzahlen)
+%%%----------------------------------------------------------
+
+\maketitle
+\tableofcontents
+
+\include{front/kurzfassung}		
+\include{front/abstract}			
+
+%%%----------------------------------------------------------
+\mainmatter          % Hauptteil (ab hier arab. Seitenzahlen)
+%%%----------------------------------------------------------
+
+\include{chapters/Einleitung}
+\include{chapters/SoftwareEntwicklung}
+\include{chapters/Grundlagen}
+\include{chapters/Pakete}
+\include{chapters/Konfiguration}
+\include{chapters/Verwendung}
+\include{chapters/Zusammenfassung}
+
+%%%----------------------------------------------------------
+\appendix                                            % Anhang 
+%%%----------------------------------------------------------
+
+\include{back/anhang_a} % Abbildungen
+\include{back/anhang_c} % myinitbasic.org
+\include{back/anhang_d} % myinitcoding.org
+\include{back/anhang_b} % CD-Inhalt
+
+%%%----------------------------------------------------------
+\MakeBibliography                        % Quellenverzeichnis
+%%%----------------------------------------------------------
+
+%%% Messbox zur Druckkontrolle ------------------------------
+\include{back/messbox}
+
+%%%----------------------------------------------------------
+\end{document}
+%%%----------------------------------------------------------

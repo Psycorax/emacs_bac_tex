@@ -1,0 +1,495 @@
+\chapter{Die Konfiguration}
+\label{cha:Konfiguration}
+In diesem Kapitel wird auf die einzelne Konfigurationsdateien
+eingegangen. Ebenso werden die Unterschiede der Dateien erklärt.
+
+\section{Die Konfigurationsdateien}
+\label{sec:konfigurationsdateien}
+Als erstes wird die Datei \textit{init.el} (siehe Abschnitt
+\ref{sec:initel}) beschrieben. Diese stellt die Basis dar und wird
+direkt von Emacs beim Start als erstes geladen. In dieser Datei kann
+eine der folgenden Dateien geladen werden:
+\begin{itemize}
+\item \textit{myinit\_basic.org} (siehe Abschnitt
+  \ref{sec:myinitbasic})
+\item \textit{myinit\_coding.org} (siehe Abschnitt
+  \ref{sec:myinitcoding})
+\end{itemize}
+
+Alle Dateien sind auf \textit{github} unter folgendem Link verfügbar:
+\url{https://github.com/Psycorax/emacs_bac}
+
+Die Datei \textit{myinit\_basic.org} enthält alle einfachen
+Konfigurationen und Pakete. Diese Einstellungen und Pakete
+unterstützen den Benutzer beim Editieren und Programmieren. Es werden
+nur {\glqq}leichtgewichtige{\grqq} Pakete geladen. Die
+Konfigurationsdatei ist für leistungsschwache Rechner ausgelegt. Sie
+funktioniert auf allen gängigen Betriebssystemen, auf denen Emacs
+läuft.
+
+Die Datei \textit{myinit\_coding.org} enthält alle Einstellungen der
+Datei \textit{myinit\_basic.org}. Zusätzlich enthält sie noch weitere
+Konfigurationen und Funktionen. Diese Konfigurationen erweitern
+einzelne Modi für die Hardware- und Software-Entwicklung. Die
+Konfigurationsdatei enthält Pakete für bessere automatische
+Vervollständigung, welche spezifisch an die Programmiersprachen
+angepasst sind. Es sind Funktionen zum Erstellen von Ordner-Strukturen
+für Hardware- und Software-Projekte enthalten, zum Kompilieren und
+Debuggen von Software und zum Kompilieren und Simulieren von
+VHDL-Code.\\
+
+\section{init.el}
+\label{sec:initel}
+Wie bereits erwähnt (siehe Abschnitt \ref{sec:konfdatgl}), startet die
+Konfigurationen in der Datei \textit{init.el}. Der komplette Inhalt
+der Datei ist auf Seite \pageref{code:initel} zu finden. In der ersten
+Zeile steht \texttt{(require 'package)}. Dadurch wird überprüft ob das
+Paket {\glqq}package{\grqq} bereits vorhanden ist, ist dies nicht der
+Fall so wird es installiert. Das Paket \textit{package} implementiert
+ein einfaches System zur Verwaltung von Paketen. Dieses
+Verwaltungssystem kann Pakete herunterladen und installieren. Die
+Pakete werden automatisch auf den aktuellsten Stand gebracht. In Zeile
+zwei steht \texttt{(setq package-enable-at-startup nil)}. Diese Zeile
+bedeutet, dass die Variable \textit{package-enable-at-startup} auf den
+Wert \textit{nil} gesetzt wird. Durch diese Zeile wird ein
+Initialisieren der Pakete nach dem Abarbeiten der Datei
+\textit{init.el} beim Start verhindert. Die Pakete werden ohnehin in
+Zeile neun manuell initialisiert. In den Zeilen drei bis acht werden
+externe Archive für Pakete hinzugefügt.  Folgende externen Archive
+werden hinzugefügt:
+\begin{itemize}
+\item \textit{melpa}
+\item \textit{melpa-stable}
+\item \textit{org-elpa}
+\end{itemize}
+Das Archiv \textit{melpa} (siehe Abschnitt \ref{sec:paketebasics})
+wurde bereits erwähnt. \textit{Melpa-stable} ist ein Archiv in dem
+sich nur von Entwicklern als stabil markierte Pakete befinden. Das
+dritte Archiv \textit{org-elpa}, wird für die Installation vom
+aktuellen \textit{org-mode} (siehe Abschnitt \ref{sec:orgmode})
+benötigt. Unter diesen Zeilen befindet sich, in Zeile neun, das
+Kommando \texttt{(package-initialize)}. Dieses leitet die manuelle
+Initialisierung der Pakete ein. In den Zeilen 11 bis 13 wird das Paket
+\textit{use-package} (siehe Abschnitt \ref{subsec:usepackage}) geladen
+und installiert. Unterhalb wird das Paket \textit{use-package} bereits
+verwendet. Es wird die aktuellere Version von \textit{org}
+installiert. Das Kommando in der letzten Zeile (Zeile 19) lädt nun die
+weitere Konfigurationsdatei. In dem folgendem Codestück ist dies die
+Datei \textit{myinit\_coding.org}. Das Kommando
+\texttt{org-babel-load-file} extrahiert alle Codeblöcke von der
+\textit{org}-Datei in eine eigene \textit{el}-Datei und diese wird
+dann direkt eingebunden.\\
+
+\begin{program}[ht]
+\lstinputlisting[language=Lisp, firstline=1,
+  lastline=19]{\string~/.emacs.d/init.el}
+\caption{\label{code:initel} Die Datei \textit{init.el}.}
+\end{program}
+
+Unter diesen 19 Zeilen Code fügt Emacs beim Start automatisch
+generierte Variablen hinzu. Diese sollten nicht verändert
+werden. Werden sie gelöscht, dann generiert Emacs die Variablen beim
+nächsten Start neu.\\
+
+\section{myinit\_basic.org}
+\label{sec:myinitbasic}
+Diese Konfigurationsdatei kann auf allen gängigen Betriebssystemen auf
+denen Emacs läuft verwendet werden. Es werden keine externen Programme
+auf dem System benötigt. In der Datei \textit{myinit\_basic.org}
+werden ausschließlich {\glqq}leichtgewichtige{\grqq} Pakete
+verwendet. Die Datei ist im Anhang \ref{app:basicorg} abgedruckt,
+beginnend auf Seite \pageref{app:basicorg}.\\
+
+\subsection{Verwendete Pakete}
+\label{subsec:basicverwpak}
+Die Pakete, welche in \textit{myinit\_basic.org} verwendet werden:
+\begin{itemize}
+\item \textit{avy} (siehe Abschnitt \ref{subsec:avy})
+\item \textit{ace-window} (siehe Abschnitt \ref{subsec:acewindow})
+\item \textit{try} (siehe Abschnitt \ref{subsec:try})
+\item \textit{hungry-delete} (siehe Abschnitt
+  \ref{subsec:hungrydelete})
+\item \textit{multiple-cursors} (siehe Abschnitt
+  \ref{subsec:multiplecursors})
+\item \textit{flyspell} (siehe Abschnitt \ref{subsec:flyspell})
+\item \textit{undo-tree} (siehe Abschnitt \ref{subsec:undotree})
+\item \textit{auto-complete} (siehe Abschnitt \ref{subsec:ac})
+\item \textit{org-ac} (siehe Abschnitt \ref{subsubsec:orgac})
+\item \textit{magit} (siehe Abschnitt \ref{subsec:magit})
+\end{itemize}
+
+\subsection{Zusätzliche Konfigurationen}
+\label{subsec:basiczuskonf}
+Die Konfigurationsdatei besteht nicht nur aus Paketen und deren
+Konfigurationen. Es werden auch noch zusätzliche Konfigurationen an
+Emacs selbst vorgenommen werden.\\
+
+\subsubsection{Oberfläche}
+Dieser Teil erstreckt sich von Zeile 6 bis 46. In diesem Bereich
+werden folgende Konfigurationen vorgenommen:
+\begin{itemize}
+\item Zeile 10 : Es wird die Startseite von Emacs unterdrückt.
+\item Zeile 13 : Verstecken der Symbolleiste.
+\item Zeile 16 : Ersetzen der Antwortmöglichkeiten von
+  {\glqq}yes{\grqq} und {\glqq}no{\grqq} auf {\glqq}y{\grqq} und
+  {\glqq}n{\grqq}.
+\item Zeile 24 bis 27 : Abhängig von der verwendeten Emacs-Version
+  wird ein Modus verwendet um die Zeilennummern am linken Rand der
+  Fenster anzuzeigen. Es ist zu beachten dass der Modus
+  {\glqq}global-linum-mode{\grqq} bei langen Dateien sehr viel
+  Rechenleistung benötigt. Aus diesem Grund wird er auch ab Emacs 26
+  durch den effizienteren Modus
+  {\glqq}global-display-line-numbers-mode{\grqq} ersetzt.
+\item Zeile 36 : Es wird das vorinstallierte Farbschema
+  {\glqq}tango-dark{\grqq} geladen.
+\item Zeile 42 : Es wird ein Modus eingeschaltet, welcher die ganze
+  Zeile in der sich der Zeiger befindet markiert.
+\item Zeile 44 : Die Farbe des Zeigers wird dunkelrot gefärbt.
+\end{itemize}
+
+\subsubsection{Globale Tastenkombinationen}
+Hier befinden sich einige globale Zuweisungen von Tastenkombinationen
+auf Kommandos. In Zeile 51 wird der F5-Taste die Funktion
+\textit{revert-buffer} zugewiesen. Diese Funktion lädt den aktuellen
+Puffer neu von der Festplatte. In Zeile 52 und 53 wird auf die
+Tastenkombination \textbf{\textbackslash e\textbackslash ei} das Öffnen der Datei
+\textit{myinit\_basic.org} zugewiesen. Zur Erklärung, \textbf{\textbackslash e}
+repräsentiert die Esc-Taste. Also entspricht \textbf{\textbackslash e\textbackslash ei} der
+Tastenkombination {\glqq}Esc-Taste Esc-Taste i{\grqq}. Das
+Schlüsselwort \textit{interactive} verhindert, dass beim Aufruf der
+Funktion ein Argument an das Kommando weitergegeben wird.\\
+
+\subsubsection{Puffer}
+Für die Verwaltung von Puffern wird \textit{ibuffer} verwendet (Zeile
+59). Es wird die Funktion für die standardmäßige Auflistung von
+Puffern mit der Auflistung mittels \textit{ibuffer} überschrieben. Die
+Auflistung mittels \textit{ibuffer} kategorisiert die offenen Puffer
+und verwendet Farben für die Darstellung.\\
+
+\subsubsection{Fenster}
+In Zeile 67 wird der Modus
+\textit{winner-mode}\footnote{\url{https://www.emacswiki.org/emacs/WinnerMode}}
+aktiviert. Dieser ermöglicht es, alte Fensteranordnungen
+wiederherzustellen. Der \textit{winner-mode} ist an die
+Tastenkombination \textbf{C-c} gefolgt von der Pfeiltaste nach links
+und rechts gebunden.\\
+
+\subsubsection{Navigation}
+Für die Vervollständigung im \textit{minibuffer} wird der
+\textit{ido-mode}\footnote{\url{https://www.emacswiki.org/emacs/InteractivelyDoThings}}
+verwendet. Diese Möglichkeiten zur Vervollständigung werden direkt im
+\textit{minibuffer} angezeigt. Der \textit{ido-mode} wird statt der
+externen Pakete \textit{ivy} (siehe Abschnitt \ref{subsec:ivy}) und
+\textit{counsel} (siehe Abschnitt \ref{subsec:counsel}) verwendet. Die
+Zeilen 88 bis 91 aktivieren den \textit{ido-mode}.\\
+
+\subsubsection{Org}
+In der Zeile 184 wird die Variable \textit{org-hide-leading-stars} auf
+{\glqq}true{\grqq} gesetzt. Dadurch wird nur jeweils der letzte Stern
+jeder Überschrift angezeigt, wodurch die Auflistung übersichtlicher
+wird.\\
+
+\section{myinit\_coding.org}
+\label{sec:myinitcoding}
+Die Datei \textit{myinit\_coding.org} enthält erweiterte
+Konfigurationen, spezifisch für Hardware- und
+Software-Entwickler/innen. Diese Datei ist im Anhang
+\ref{app:codingorg} ab Seite \pageref{app:codingorg} zu
+finden.\\\\ Für folgende Programmiersprachen werden Konfigurationen
+vorgenommen:
+\begin{itemize}
+\item C
+\item C++
+\item CMake
+\item Python
+\item Latex
+\item VHDL
+\item tcl\\
+\end{itemize}
+Um alle implementierten Funktionen für C und C++ verwenden zu können,
+müssen folgende externe Programme auf dem System installiert sein:
+\begin{itemize}
+\item \textit{CMake}\footnote{\url{https://cmake.org/}}
+\item \textit{gdb}\footnote{\url{https://www.gnu.org/software/gdb/}}\\
+\end{itemize}
+Um alle implementierten Funktionen für Python verwenden zu können,
+müssen folgende externe Programme auf dem System installiert sein:
+\begin{itemize}
+\item \textit{pyinstaller}\footnote{\url{https://www.pyinstaller.org/}}
+\item \textit{elpy} (siehe Abschnitt \ref{subsec:elpy})\\
+\end{itemize}
+Um alle implementierten Funktionen für Latex verwenden zu können,
+müssen folgende externe Programme auf dem System installiert sein:
+\begin{itemize}
+\item \textit{pdflatex}\footnote{\url{https://www.tug.org/texlive/}}\\
+\end{itemize}
+Um alle implementierten Funktionen für VHDL verwenden zu können,
+müssen folgende externe Programme auf dem System installiert sein:
+\begin{itemize}
+\item
+  \textit{Modelsim}\footnote{\url{https://www.intel.com/content/www/us/en/software/programmable/quartus-prime/model-sim.html}}
+\item \textit{ghdl}\footnote{\url{https://github.com/ghdl/ghdl}}\\
+\end{itemize}
+
+\subsection{Verwendete Pakete}
+\label{subsec:codingverwpak}
+In dieser Konfigurationsdatei werden alle in dem Kapitel
+\ref{cha:pakete} beschriebenen Pakete verwendet.\\
+
+\subsection{Ähnliche Konfigurationen zur Datei init\_basic.org}
+Die folgenden Konfigurationen sind denen der Datei
+\textit{init\_basic.org} sehr ähnlich. Es werden nur die Unterschiede
+beschrieben:
+\begin{itemize}
+\item Oberfläche : Das Farbschema {\glqq}tango-dark{\grqq} wird in
+  dieser Konfiguration nicht verwendet und ist aus diesem Grund
+  auskommentiert. Das selbe gilt für die Farbe des Zeigers.
+\item Globale Tastenkombinationen : Es wird zusätzlich an die
+  Tastenkombination \textbf{C-x o} das Kommando \textit{ace-window}
+  global gebunden. Des weiteren werden noch zusätzlich Tasten mit der
+  Funktion \textit{find-file} belegt. Dadurch wird ein schnellerer
+  Zugriff auf häufig verwendete Dateien ermöglicht.
+\item Puffer : Dieser Teil ist identisch.
+\item Fenster : Dieser Teil ist ebenfalls identisch.
+\item Navigation : Der Modus \textit{ido-mode} wird nicht verwendet,
+  da die Pakete \textit{ivy} und \textit{counsel} diesen Modus
+  ersetzten.
+\end{itemize}
+
+\subsection{Konfigurationen für grafische Elemente}
+\label{subsec:guikonf}
+In den Zeilen 900 bis 905 der Konfigurationsdatei können grafische
+Elemente ein- und ausgeschaltet werden. Es sollte nur ein Farbschema
+zur selben Zeit aktiv sein. Eingeschaltet werden die Elemente, wenn
+sie auf {\glqq}t{\grqq} gesetzt werden. Ausgeschaltet werden die
+Elemente, wenn sie auf {\glqq}nil{\grqq} gesetzt werden.\\
+
+\subsection{Funktionen für die Softwareentwicklung}
+\label{subsec:funkswkonf}
+In der Konfigurationsdatei \textit{myinit\_coding.org} sind in den
+Zeilen 304 bis 320 zwei Funktionen implementiert. Die Funktion
+\textit{this-file-in-dir} vergleicht das Verzeichnis der aktuellen
+Datei mit dem übergebenen Parameter. Die Funktion
+\textit{default-in-dir} vergleicht die gesetzte Variable
+\textit{default-directory} mit dem übergebenen Parameter.
+
+In den Zeilen 365 bis 385 ist die Funktion \textit{beautify-me}
+definiert. Diese Funktion richtet den Puffer-Inhalt neu aus, löscht
+überflüssige Leerzeichen und ersetzt Tabulatoren durch Leerzeichen
+oder umgekehrt. Dies ist von dem mitgegebenen Parameter abhängig. Wird
+der Parameter \textit{noTabs} auf {\glqq}t{\grqq} gesetzt, so wird die
+Funktion \textit{untabify} ausgeführt, andernfalls
+\textit{tabify}. Für Emacs Lisp-Code muss die Funktion
+\textit{untabify} verwendet werden, sonnst wird die Ausrichtung der
+\textit{hydras} verändert. Aus diesem Grund wurde die Funktion
+\textit{beautify-el} explizit definiert.\\
+
+\subsection{Der org- und elisp-Modus}
+\label{subsec:orgelispmoduskonf}
+Es folgen die expliziten Konfigurationen für den \textit{org-mode} und
+\textit{emacs-lisp-mode}.
+
+\subsubsection{hydra}
+Für den \textit{org-mode} wird eine \textit{hydra} definiert, diese
+hat zu diesem Zeitpunkt nur einen Eintrag. Der Eintrag in der
+\textit{hydra} verbindet den Buchstaben {\glqq}b{\grqq} mit einer
+zusammengesetzten Funktion. Es wird erst die Funktion
+\textit{org-edit-special} ausgeführt, danach die Funktion
+\textit{beautify-me} mit dem Parameter auf {\glqq}t{\grqq} gesetzt und
+als letztes die Funktion \textit{org-edit-src-exit}. Die Funktion
+richtet Codeblöcke aus, ohne diese spezifisch öffnen zu müssen.
+
+Für den \textit{emacs-lisp-mode} werden nicht viele Funktionen
+benötigt. Hierdurch wird keine \textit{hydra} definiert. An die
+Tastenkombination \textbf{C-c C-b} wird die Funktion
+\textit{beautify-el} (siehe Abschnitt \ref{subsec:funkswkonf})
+gebunden.
+
+\subsubsection{hooks}
+In den \textit{org-mode} sind folgende Modi angehängt:
+\begin{itemize}
+\item \textit{flyspell-mode} (siehe Abschnitt \ref{subsec:flyspell})
+\item \textit{smartparens-mode} (siehe Abschnitt
+  \ref{subsec:smartparens})\\
+\end{itemize}
+In den \textit{emacs-lisp-mode} sind folgende Modi angehängt:
+\begin{itemize}
+\item \textit{smartparens-mode} (siehe Abschnitt
+  \ref{subsec:smartparens})
+\item \textit{company-mode} (siehe Abschnitt \ref{subsec:company})
+\item \textit{yas-minor-mode} (siehe Abschnitt
+  \ref{subsec:yasnippet})\\
+\end{itemize}
+
+\subsection{Der C- und C++-Modus}
+\label{subsec:cc++moduskonf}
+Die beiden Modi \textit{c-mode} und \textit{c++-mode} sind für die
+Softwareentwicklung in den Sprachen C und C++ ausgelegt. Die folgenden
+Konfigurationen werden in der Konfigurationsdatei
+\textit{myinit\_coding.org} durchgeführt.\\
+
+\subsubsection{hydra}
+Es ist eine \textit{hydra} mit sieben Einträgen definiert. Diese
+Einträge verbinden Tasten mit Funktionalitäten:
+\begin{itemize}
+\item \textbf{b} : Formatierung des Puffers mit Verwendung von
+  Tabulatoren.
+\item \textbf{u} : Formatierung des Puffers ohne Verwendung von
+  Tabulatoren.
+\item \textbf{t} : Erstellen einer Datei mit \textit{ctags} (siehe
+  Abschnitt \ref{subsec:ctags}).
+\item \textbf{d} : Kompilieren des Projektes und Erstellen einer
+  ausführbaren Datei zum Debuggen.
+\item \textbf{r} : Kompilieren des Projektes und Erstellen einer
+  ausführbaren Datei.
+\item \textbf{S} : Startet das Debuggen mit
+  \textit{gdb}\footnote{\url{https://www.gnu.org/software/gdb/}}.
+\item \textbf{C} : Löschen aller generierten Dateien.
+\end{itemize}
+
+\subsubsection{hooks}
+In den \textit{c-mode} und \textit{c++-mode} sind folgende Modi
+angehängt:
+\begin{itemize}
+\item \textit{smartparens-mode} (siehe Abschnitt
+  \ref{subsec:smartparens})
+\item \textit{company-mode} (siehe Abschnitt \ref{subsec:company})
+\item \textit{yas-minor-mode} (siehe Abschnitt
+  \ref{subsec:yasnippet})\\
+\end{itemize}
+
+\subsubsection{Funktionen}
+In den Zeilen 460 bis 534 sind Funktionen definiert, welche in der
+\textit{hydra} den Tasten zugewiesen werden.\\
+
+\subsubsection{Style}
+Für die Modi \textit{c-mode} und \textit{c++-mode}, wird die Funktion
+{\glqq}set-my-style-cpp{\grqq} definiert. Diese implementiert einen
+Programmierstil und wird an die beiden Modi angehängt. Es wird der
+vorgegebene Stil {\glqq}stroustrup{\grqq} verwendet und die
+Tabulatorweite auf zwei Leerzeichen
+abgeändert\footnote{\url{https://www.emacswiki.org/emacs/IndentingC\#toc2b}}.\\
+
+\subsubsection{Optionale Wahl}
+In der Zeile 552 kann die Variable \textit{use\_irony} auf
+{\glqq}t{\grqq} gesetzt werden, um das Paket \textit{irony} (siehe
+Abschnitt \ref{subsec:irony}) mit Erweiterungen zu benutzen. Dadurch
+wird eine spezifische automatische Vervollständigung für C und C++
+aktiviert.\\
+
+\subsection{Der Python-Modus}
+\label{subsec:pythonmoduskonf}
+Der Modus \textit{python-mode} ist für die Softwareentwicklung in der
+Sprache Python ausgelegt. Die folgenden Konfigurationen werden in der
+Konfigurationsdatei \textit{myinit\_coding.org} durchgeführt.\\
+
+\subsubsection{hydra}
+Es ist eine \textit{hydra} mit neun Einträgen definiert. Diese
+Einträge verbinden Tasten mit Funktionalitäten:
+\begin{itemize}
+\item \textbf{b} : Formatierung des Puffers mit Verwendung von
+  Tabulatoren.
+\item \textbf{u} : Formatierung des Puffers ohne Verwendung von
+  Tabulatoren.
+\item \textbf{t} : Erstellen einer Datei mit \textit{ctags} (siehe
+  Abschnitt \ref{subsec:ctags}).
+\item \textbf{p} : Starten einer Python-Shell.
+\item \textbf{e} : Inhalt des Puffers an die Python-Shell senden und
+  ausführen.
+\item \textbf{s} : Python-Shell anzeigen.
+  \textit{gdb}\footnote{\url{https://www.gnu.org/software/gdb/}}.
+\item \textbf{E} : Ausführbare Datei mit \textit{pyinstaller}
+  erzeugen.
+\item \textbf{Q} : Beenden der Python-Shell.
+\item \textbf{C} : Löschen aller generierten Dateien.
+\end{itemize}
+
+\subsubsection{hooks}
+An den \textit{python-mode} sind folgende Modi angehängt:
+\begin{itemize}
+\item \textit{smartparens-mode} (siehe Abschnitt
+  \ref{subsec:smartparens})
+\item \textit{company-mode} (siehe Abschnitt \ref{subsec:company})
+\item \textit{yas-minor-mode} (siehe Abschnitt
+  \ref{subsec:yasnippet})\\
+\end{itemize}
+
+\subsubsection{Funktionen}
+In den Zeilen 617 bis 670 sind Funktionen definiert, welche in der
+\textit{hydra} den Tasten zugewiesen werden.\\
+
+\subsubsection{Optionale Wahl}
+In der Zeile 675 kann die Variable \textit{use\_elpy} auf
+{\glqq}t{\grqq} gesetzt werden um das Paket \textit{elpy} (siehe
+Abschnitt \ref{subsec:elpy}) zu benutzen.
+
+\subsection{Der Latex-Modus}
+\label{subsec:latexmoduskonf}
+Der Modus \textit{latex-mode} ist für das Erstellen von Dokumente in
+der Sprache Latex ausgelegt. Die folgenden Konfigurationen sind in der
+Konfigurationsdatei \textit{myinit\_coding.org} festgelegt.\\
+
+\subsubsection{hydra}
+Es ist eine \textit{hydra} mit zwei Einträgen definiert. Diese
+Einträge verbinden Tasten mit Funktionalitäten:
+\begin{itemize}
+\item \textbf{b} : Kompilieren des Latex-Projektes.
+\item \textbf{C} : Löschen aller generierten Dateien.
+\end{itemize}
+
+\subsubsection{hooks}
+An den \textit{latex-mode} sind folgende Modi angehängt:
+\begin{itemize}
+\item \textit{flyspell-mode} (siehe Abschnitt \ref{subsec:flyspell})
+\item \textit{smartparens-mode} (siehe Abschnitt
+  \ref{subsec:smartparens})
+\item \textit{company-mode} (siehe Abschnitt \ref{subsec:company})
+\item \textit{yas-minor-mode} (siehe Abschnitt
+  \ref{subsec:yasnippet})\\
+\end{itemize}
+
+\subsubsection{Funktionen}
+In den Zeilen 715 bis 776 sind Funktionen definiert, welche in der
+\textit{hydra} verwendet werden.\\
+
+\subsection{Der VHDL-Modus}
+\label{subsec:vhdlmoduskonf}
+Der Modus \textit{vhdl-mode} ist für die Hardwarebeschreibungssprache
+VHDL ausgelegt. Die folgenden Konfigurationen werden in der
+Konfigurationsdatei \textit{myinit\_coding.org} durchgeführt.\\
+
+\subsubsection{hydra}
+Es ist eine \textit{hydra} mit sechs Einträgen definiert. Diese
+Einträge verbinden Tasten mit folgenden Funktionalitäten:
+\begin{itemize}
+\item \textbf{b} : Formatierung des Puffers mit dem vorhandenem
+  \textit{beautifier}\footnote{\url{http://doc.endlessparentheses.com/Fun/vhdl-beautify-buffer.html}}
+  im \textit{vhdl-mode}.
+\item \textbf{c} : Kompilieren des Projektes mit \textit{ghdl}.
+\item \textbf{s} : Ein \textit{tcl}-Datei festlegen, mit welchem
+  \textit{Modelsim} gestartet wird.
+\item \textbf{S} : Starten von \textit{Modelsim} mit der gesetzten
+  \textit{tcl}-Datei.
+\item \textbf{t} : Erstellen einer Datei mit \textit{ctags} (siehe
+  Abschnitt \ref{subsec:ctags}).
+\item \textbf{C} : Löschen aller generierten Dateien.
+\end{itemize}
+
+\subsubsection{hooks}
+An den \textit{vhdl-mode} und \textit{tcl-mode} sind folgende Modi angehängt:
+\begin{itemize}
+\item \textit{smartparens-mode} (siehe Abschnitt
+  \ref{subsec:smartparens})
+\item \textit{company-mode} (siehe Abschnitt \ref{subsec:company})
+\item \textit{yas-minor-mode} (siehe Abschnitt
+  \ref{subsec:yasnippet})\\
+\end{itemize}
+
+\subsubsection{Funktionen}
+In den Zeilen 808 bis 885 sind Funktionen definiert, welche in der
+\textit{hydra} den Tasten zugewiesen werden.\\
+
+\subsubsection{Optionale Wahl}
+In der Zeile 675 kann die Variable \textit{use\_elpy} auf
+{\glqq}t{\grqq} gesetzt werden um das Paket \textit{elpy} (siehe
+Abschnitt \ref{subsec:elpy}) zu benutzen.
